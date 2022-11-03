@@ -1,0 +1,18 @@
+{"type_definitions":
+  [
+    {
+      "type":"group",
+      "relationships":[
+          {"relation":"assignee","object":"role"}
+      ]
+    },
+    {
+      "type":"role",
+      "relationships":[
+        {"relation":"assignee","object":"user"},
+        {"relation":"parent","object":"role"},
+        {"relation":"parent_group","object":"group"}
+      ]
+    }
+  ]
+}
