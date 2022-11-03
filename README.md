@@ -1,4 +1,4 @@
-# Keycloak OpenFGA Custom Event Listener for integrating Keycloak and OpenFGA for Fine-Grained Authorization
+# Keycloak OpenFGA Custom Event Listener for integrating Keycloak and OpenFGA
 
 Here is a Custom Event Listener Extension known as Service Provider Interfaces (SPI) which:
 1. listens to the following Keycloak events: User Role Assignment, User Group Assignment, Role to Role Assignment  and User Group Assignment 
