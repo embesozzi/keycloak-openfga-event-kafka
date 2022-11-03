@@ -6,11 +6,16 @@ Here is a Custom Event Listener Extension known as Service Provider Interfaces (
 <p align="center">
   <img width="70%" height="70%" src="images/openfga-authz-model.png">
 </p>
-3. publishes the event to [Kafka](https://kafka.apache.org/) Cluster
+3. publishes the event to Kafka
 
-## Overview
+# Overview 
 
-This custom Keycloak OpenFGA Event Listener is one of the components of the following authorization architecture:
+This custom Keycloak OpenFGA Event Listener is one of the components of the following authorization architecture described here:
+
+* Article [Keycloak integration with OpenFGA (based on Zanzibar) for Fine-Grained Authorization at Scale (ReBAC)](https://embesozzi.medium.com/keycloak-integration-with-openfga-based-on-zanzibar-for-fine-grained-authorization-at-scale-d3376de00f9a)
+* Workshop: https://github.com/embesozzi/keycloak-openfga-workshop
+
+Nevertheless, a brief introduction is described here:
 
 ![solution-architecture](images/solution-architecture.png)
 
@@ -23,9 +28,6 @@ This custom Keycloak OpenFGA Event Listener is one of the components of the foll
     * Store Web Application is integrated with Keycloak by OpenID Connect
     * Store API is protected by OAuth 2.0 and it utilizes the OpenFGA SDK for FGA
 
-More details are available here:
-* Article [Keycloak integration with OpenFGA (based on Zanzibar) for Fine-Grained Authorization at Scale (ReBAC)](https://embesozzi.medium.com/keycloak-integration-with-openfga-based-on-zanzibar-for-fine-grained-authorization-at-scale-d3376de00f9a)
-* Workshop: https://github.com/embesozzi/keycloak-openfga-workshop
 
 ##  Objective
 
