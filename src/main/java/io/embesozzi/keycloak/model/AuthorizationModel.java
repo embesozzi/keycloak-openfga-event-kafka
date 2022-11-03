@@ -12,6 +12,7 @@ public class AuthorizationModel {
     public AuthorizationModel(@JsonProperty("type_definitions") List<TypeDefinition> typeDefinitions) {
         this.typeDefinitions = typeDefinitions;
     }
+
     public static AuthorizationModel of(List<TypeDefinition> typeDefinitions){
         return new AuthorizationModel(typeDefinitions);
     }

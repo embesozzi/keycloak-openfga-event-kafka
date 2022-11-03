@@ -14,6 +14,7 @@ public abstract class ServiceHandler {
         this.session = session;
         this.config = config;
     }
+
     public abstract void handle(String eventID, String eventValue)  throws ExecutionException, InterruptedException, TimeoutException;
 
     public abstract void validateConfig();

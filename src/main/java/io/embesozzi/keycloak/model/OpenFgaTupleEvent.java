@@ -6,13 +6,15 @@ public class OpenFgaTupleEvent extends ZanzibarTupleEvent {
 
     public static final String OPERATION_WRITES = "writes";
     public static final String OPERATION_DELETES = "deletes";
-    private OpenFgaTupleEvent(Builder builder){
+
+    private OpenFgaTupleEvent(Builder builder) {
         super.setUser(builder.user);
         super.setRelation(builder.relationship);
         super.setObject(builder.object);
         super.setOperation(builder.operation);
     }
-    public static class Builder extends ZanzibarTupleEvent.Builder<Builder, OpenFgaTupleEvent>{
+
+    public static class Builder extends ZanzibarTupleEvent.Builder<Builder, OpenFgaTupleEvent> {
 
         String userId;
         String objectId;
@@ -21,6 +23,7 @@ public class OpenFgaTupleEvent extends ZanzibarTupleEvent {
 
         public Builder(){
         }
+
         public Builder userId(String userId) {
             this.userId = userId;
             return this;
@@ -51,6 +54,7 @@ public class OpenFgaTupleEvent extends ZanzibarTupleEvent {
             this.objectType = objectType;
             return this;
         }
+
         @Override
         public OpenFgaTupleEvent build() {
             if(!StringUtil.isBlank(userType) && !StringUtil.isBlank(userId)) {
@@ -62,6 +66,7 @@ public class OpenFgaTupleEvent extends ZanzibarTupleEvent {
             validate();
             return new OpenFgaTupleEvent(this);
         }
+
         private void validate() throws IllegalStateException {
             StringBuilder message = new StringBuilder();
             message.append(StringUtil.isBlank(user) ? "Attribute user is must not be null\n" : "");

@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import java.io.IOException;
 
 public class OpenFgaTupleEventSerializer extends StdSerializer<ZanzibarTupleEvent> {
+
     public OpenFgaTupleEventSerializer() {
         this(null);
     }
+
     public OpenFgaTupleEventSerializer(Class<ZanzibarTupleEvent> t) {
         super(t);
     }

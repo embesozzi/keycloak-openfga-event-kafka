@@ -10,6 +10,7 @@ import org.keycloak.events.admin.AdminEvent;
 import org.keycloak.models.KeycloakSession;
 
 public class EventParser {
+
     private AdminEvent event;
     private ObjectMapper mapper;
     private KeycloakSession session;
@@ -105,9 +106,11 @@ public class EventParser {
     public String getEventAuthenticatedUserId() {
         return this.event.getAuthDetails().getUserId();
     }
+
     public String getEventUserId() {
         return this.event.getResourcePath().split("/")[1];
     }
+
     public String getEventResourceName() {
         return this.event.getResourcePath().split("/")[0];
     }
@@ -131,6 +134,7 @@ public class EventParser {
     public String getEventObjectName() {
         return getObjectByAttributeName("name");
     }
+
     private String getObjectByAttributeName(String attributeName) {
         ObjectMapper mapper = new ObjectMapper();
         String representation = event.getRepresentation().replaceAll("\\\\", ""); // Fixme: I should try to avoid the replace

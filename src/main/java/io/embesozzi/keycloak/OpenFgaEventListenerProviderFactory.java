@@ -41,10 +41,12 @@ public class OpenFgaEventListenerProviderFactory implements EventListenerProvide
 		if (serviceHandlerName == null) {
 			throw new NullPointerException("Service handler name must not be null.");
 		}
+
 		String authorizationModelJson = config.get("authorizationModel");
 		if (authorizationModelJson == null) {
 			throw new NullPointerException("Authorization Model must not be null.");
 		}
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			this.model = objectMapper.readValue(authorizationModelJson, AuthorizationModel.class);
