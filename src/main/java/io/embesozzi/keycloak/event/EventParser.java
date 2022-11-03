@@ -34,6 +34,17 @@ public class EventParser {
         this.model = model;
         this.mapper = new ObjectMapper();
     }
+
+    /***
+     * Convert the Keycloak event to Event Tuple following the OpenFGA specs
+     * The OpenFGA authorization model is more complex, nevertheless, here is a simplified version of the Authorization Model that fit our requirements'
+     * role
+     *   |_ assignee     --> user   == Keycloak User Role Assignment
+     *   |_ parent_group --> group  == Keycloak Group Role Assignment
+     *   |_ parent       --> role   == Keycloak Role to Role Assignment
+     *  group
+     *   |_ assignee     --> user   == Keycloak User Group Role Assignment
+     */
     public ZanzibarTupleEvent toTupleEvent()
     {
         // Get all the required information from the KC event

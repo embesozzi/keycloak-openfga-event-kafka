@@ -3,7 +3,9 @@
 Here is a Custom Event Listener Extension known as Service Provider Interfaces (SPI) which:
 1. listens to the following Keycloak events: User Role Assignment, User Group Assignment, Role to Role Assignment  and User Group Assignment 
 2. converts this event into an OpenFGA tuple based on [keycloak-openfga-authorization-model](keycloak-openfga-authorization-model.json) and the following [OpenFGA Authorization Schema](openfga/keycloak-authorization-model.json):
-![solution-architecture](images/openfga-authz-model.png)
+<p align="center">
+  <img width="70%" height="70%" src="images/openfga-authz-model.png">
+</p>
 3. publishes the event to [Kafka](https://kafka.apache.org/) Cluster
 
 ## Overview
@@ -40,7 +42,7 @@ The main purpose of this SPI is to listen to the Keycloak events and publish the
 Here is a high level overview of the extension:
 
 <p align="center">
-  <img width="70%" height="70%" src="images/listener.png">
+  <img width="70%" height="50%" src="images/listener.png">
 </p>
 
 In this case, the extension listens to the Admin Events related to operation in Keycloak Identity, Role and Group model. So far, the extension proceeds with the following steps:
@@ -53,6 +55,10 @@ In this case, the extension listens to the Admin Events related to operation in 
 | Role To Role Assignment        | Role is assigned to a parent Keycloak Role |
 | Group To Role Assignment       |    Group is assigned to a Keycloak Role    |
 | User Group Membership          |        User is assigned to a Group         |
+
+For instance here is an example of the Keycloak Admin Event for User Role Assignment:
+
+
 
 2. Transform the Keycloak event into a OpenFGA tuple and check if that is handled by [keycloak-openfga-authorization-model](keycloak-openfga-authorization-model.json):
 
