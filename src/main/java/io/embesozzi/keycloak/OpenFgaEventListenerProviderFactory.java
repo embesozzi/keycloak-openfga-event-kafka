@@ -14,7 +14,7 @@ import org.keycloak.models.KeycloakSessionFactory;
 
 public class OpenFgaEventListenerProviderFactory implements EventListenerProviderFactory {
 
-	private static final String PROVIDER_ID = "openfga-events";
+	private static final String PROVIDER_ID = "openfga-events-kafka";
 	private OpenFgaEventListenerProvider instance;
 	private String serviceHandlerName;
 	private AuthorizationModel model;

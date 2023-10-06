@@ -23,28 +23,28 @@ public class OpenFgaEventListenerProvider implements EventListenerProvider {
 	private KeycloakSession session;
 
 	public OpenFgaEventListenerProvider(AuthorizationModel model, ServiceHandler service, KeycloakSession session) {
-		LOG.info("[OpenFgaEventListener] OpenFgaEventListenerProvider initializing...");
+		LOG.info("[OpenFgaEventKafka] OpenFgaEventListenerProvider initializing...");
 		this.service = service;
 		this.session = session;
 		this.model = model;
-		LOG.info("[OpenFgaEventListener] OpenFgaEventListenerProvider initialized with model: " + model.toString());
+		LOG.info("[OpenFgaEventKafka] OpenFgaEventListenerProvider initialized with model: " + model.toString());
 		mapper = new ObjectMapper();
 	}
 
 	@Override
 	public void onEvent(Event event) {
-		LOG.debug("[OpenFgaEventListener] onEvent type: " + event.getType().toString());
-		LOG.debug("[OpenFgaEventListener] Discarding event...");
+		LOG.debug("[OpenFgaEventKafka] onEvent type: " + event.getType().toString());
+		LOG.debug("[OpenFgaEventKafka] Discarding event...");
 	}
 
 	@Override
 	public void onEvent(AdminEvent adminEvent, boolean includeRepresentation) {
-		LOG.debug("[OpenFgaEventListener] onEvent Admin received events");
+		LOG.debug("[OpenFgaEventKafka] onEvent Admin received events");
 
 		try {
-			LOG.debugf("[OpenFgaEventListener] admin event: " + mapper.writeValueAsString(adminEvent));
+			LOG.debugf("[OpenFgaEventKafka] admin event: " + mapper.writeValueAsString(adminEvent));
 			EventParser eventParser = new EventParser(adminEvent, model, session);
-			LOG.debugf("[OpenFgaEventListener] event received: " + eventParser.toString());
+			LOG.debugf("[OpenFgaEventKafka] event received: " + eventParser.toString());
 			service.handle(adminEvent.getId(), mapper.writeValueAsString(eventParser.toTupleEvent()));
 		} catch (IllegalArgumentException e) {
 			LOG.warn(e.getMessage());

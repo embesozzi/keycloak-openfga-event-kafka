@@ -4,7 +4,7 @@ LABEL maintainer="embesozzi@gmail.com"
 ENV KC_DB=postgres
 ENV KC_HTTP_RELATIVE_PATH=/auth
 
-COPY ./target/keycloak-openfga-events-1.0.2-jar-with-dependencies.jar /opt/keycloak/providers/keycloak-openfga-events-1.0.2.jar
+COPY ./target/keycloak-openfga-events-3.0.0-jar-with-dependencies.jar /opt/keycloak/providers/keycloak-openfga-events-3.0.0.jar
 RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:19.0.2

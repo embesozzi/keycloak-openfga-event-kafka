@@ -8,8 +8,6 @@ public class ServiceHandlerFactory {
         switch (serviceName) {
             case ("KAFKA"):
                 return new KafkaServiceHandler(session, config);
-            case ("HTTP_CLIENT"):
-                throw new IllegalArgumentException("This service has not been implemented yet... " + serviceName);
             default:
                 throw new IllegalArgumentException("The service " + serviceName + " is not implemented");
         }

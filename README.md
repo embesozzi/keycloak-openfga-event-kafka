@@ -1,6 +1,13 @@
-# Keycloak OpenFGA Custom Event Listener
+# Keycloak OpenFGA Custom Event to Kafka
 
-Here is a Custom Event Listener Extension known as Service Provider Interfaces (SPI) which helps to integrate [Keycloak](https://www.keycloak.org/) and [OpenFGA](https://openfga.dev/). OpenFGA is an open source solution for Fine-Grained Authorization that applies the concept of ReBAC (created by the Auth0 inspired by Zanzibar).  
+Here is a Custom Event Listener Extension known as Service Provider Interfaces (SPI) which helps to integrate [Keycloak](https://www.keycloak.org/) and [OpenFGA](https://openfga.dev/) through Kafka.
+OpenFGA is an open source solution for Fine-Grained Authorization that applies the concept of ReBAC (created by the Auth0 inspired by Zanzibar).
+
+Nevertheless, if you want a direct integration between Keycloak and OpenFGA, please use the Keycloak new extension:
+
+- https://github.com/embesozzi/keycloak-openfga-event-publisher
+
+
 The SPI implements these steps:
 1. listens to the following Keycloak events based on his own Identity, Role and Group model (e.g., User Role Assignment, Role to Role Assignment, etc)
     
@@ -10,6 +17,7 @@ The SPI implements these steps:
 </p>
   
 3. publishes the event to Kafka. Kafka is a messaging system that safely moves data between systems. When an event has published an OpenFGA Kafka consumer sends the event to the OpenFGA solution.
+
 
 ## Solution Architecture Overview 
 
@@ -73,7 +81,7 @@ So far we don’t have an official Java SDK OpenFGA client to publish the author
 
 ## How to install?
 
-Download a release (*.jar file) that works with your Keycloak version from the [list of releases](https://github.com/embesozzi/keycloak-openfga-event-listener/releases).
+Download a release (*.jar file) that works with your Keycloak version from the [list of releases](https://github.com/embesozzi/keycloak-openfga-event-kafka/releases).
 Or you can build with ```bash mvn clean package```
 
 Follow the below instructions depending on your distribution and runtime environment.
@@ -97,18 +105,18 @@ For Docker-based setups mount or copy the jar to
 > Therefore, <b>I have not tested this extension in Wildfly-based distro </b> :exclamation: ️
 
 ## Module Configuration
-The following properties can be set via environment variables following the Keycloak specs, thus each variable MUST use the prefix `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS`.
+The following properties can be set via environment variables following the Keycloak specs, thus each variable MUST use the prefix `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_KAFKA`.
 
 
-* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_AUTHORIZATION_MODEL`: The `authorizationModel` handled by this module. See [keycloak-openfga-authorization-model](keycloak-openfga-authorization-model.json)
+* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_KAFKA_AUTHORIZATION_MODEL`: The `authorizationModel` handled by this module. See [keycloak-openfga-authorization-model](keycloak-openfga-authorization-model.json)
 
-* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_SERVICE_HANDLER_NAME`: The `serviceHandlerName` is the name of the service for publishing the events. This version only supports the value: `KAFKA`
+* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_KAFKA_SERVICE_HANDLER_NAME`: The `serviceHandlerName` is the name of the service for publishing the events. This version only supports the value: `KAFKA`
 
-* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_ADMIN_TOPIC` : The `adminTopic` is the name of the kafka topic to where the OpenFGA tuple events will be produced to.
+* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_KAFKA_ADMIN_TOPIC` : The `adminTopic` is the name of the kafka topic to where the OpenFGA tuple events will be produced to.
 
-* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_CLIENT_ID`: The `clientId` used to identify the client in Kafka.
+* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_KAFKA_CLIENT_ID`: The `clientId` used to identify the client in Kafka.
 
-* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_BOOTSTRAP_SERVERS`: The `bootstrapServers` is a comma separated list of available brokers.
+* `KC_SPI_EVENTS_LISTENER_OPENFGA_EVENTS_KAFKA_BOOTSTRAP_SERVERS`: The `bootstrapServers` is a comma separated list of available brokers.
 
 
 You may want to check [docker-compose.yml](docker-compose.yml) as an example.
@@ -121,10 +129,7 @@ Enable the Keycloak OpenFGA Event Listener extension in Keycloak:
 * Open [administration console](http://keycloak:8081)
 * Choose realm
 * Realm settings
-* Select `Events` tab and add `openfga-events` to Event Listeners.
-
-
-<img src="./images/kc-admin-events.png" width="80%" height="80%">
+* Select `Events` tab and add `openfga-events-kafka` to Event Listeners.
 
 # Test Cases
 The test cases are available in the workshop:
